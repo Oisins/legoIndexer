@@ -1,0 +1,21 @@
+import netHandler
+import json
+
+
+def filterStats(file):
+    pcsStart = file.find("Teile:<em>")
+    #print(file)
+    pcs = file[pcsStart:file[pcsStart:file.find("</em>")].find("</em>")]
+
+    return pcs
+
+
+with open("category.json", "r") as file:
+    categories = json.loads(file.read())
+
+#netHandler.Reader.load()
+print(categories)
+for category in categories["categories"]:
+    print(category)
+
+    print(filterStats(netHandler.Reader.load(category["id"])))
